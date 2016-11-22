@@ -1,0 +1,25 @@
+{
+  "name": "CS290-Final-Project",
+  "version": "1.0.0",
+  "description": "Final Project (static?) server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KobaKiju/Powered_By_Java-Rockstar.git"
+  },
+  "author": "Dan Van Horn",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/KobaKiju/Powered_By_Java-Rockstar/issues"
+  },
+  "homepage": "https://github.com/KobaKiju/Powered_By_Java-Rockstar#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.6"
+  }
+}
