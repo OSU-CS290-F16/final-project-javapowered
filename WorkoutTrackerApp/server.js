@@ -11,15 +11,15 @@ var port = process.env.PORT || 3545;
 var app = express();
 
 
-
-
+// set up view engine 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
-app.use(express.static(path.join(__dirname, 'Content')));
+//serve files from ./content/
+app.use(express.static(path.join(__dirname, 'content')));
 
-
+// Use routing controllers for home and profile
 app.use('/', home);
 app.use('/profile', profile);
 
