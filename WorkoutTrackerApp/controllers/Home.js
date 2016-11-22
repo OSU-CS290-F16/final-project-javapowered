@@ -11,6 +11,8 @@ var index = fs.readFileSync(path.join(staticDir, 'index.handlebars'), 'utf8');
 var weightsWorkouts = [];
 var sportsWorkouts = [];
 
+//since weight lifting has slightly different data
+//we do some pre-processing to add an isWeightLifting property
 Object.keys(workoutsData).forEach(function (type) {
     if (workoutsData[type].section === 'Weight Lifting') {
         workoutsData[type].isWeightLifting = true;
