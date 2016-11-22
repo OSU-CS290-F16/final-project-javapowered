@@ -1,0 +1,23 @@
+/*
+* Description: CSS for index
+* @author :
+* @version :
+* Date : 
+* Status : Incomplete
+*/
+
+
+
+
+.SportSection{
+    border: 1px solid black;
+    width: 500px;
+    display: inline-block;
+    padding: 25px 25px 25px 25px;
+    margin-top: 50px;
+    margin-right: 25px;
+    border-radius: 15px;
+}
+
+
+
