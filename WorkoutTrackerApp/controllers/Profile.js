@@ -8,7 +8,6 @@ var staticDir = path.join(__dirname, '..', 'views');
 var profile = fs.readFileSync(path.join(staticDir, 'profile.handlebars'), 'utf8');
 
 router.get('/', function (req, res) {
-    console.log(req.url);
     res.status(200).render(path.join(staticDir, 'profile'));
 });
 
