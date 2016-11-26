@@ -6,9 +6,28 @@
 			<h3 class="modal-title" id="lineModalLabel">Add Workout</h3>
 		</div>
 		<div class="modal-body">
-			
-            <!-- depending on if the button clicked is weight lifting or a sport, we need to call different partials-->
-				{{> add-weight-modal-body}}				
+			<div class="modal-body">
+					<div class="workout-input">
+							<label for="w-input-date">Date</label>
+							<input type="text" id="w-input-date">
+					</div>
+					<div class="workout-input">
+							<label for="w-input-exercise">Exercise</label>
+							<input type="text" id="w-input-exercise">
+					</div>
+					<div class="workout-input">
+							<label for="w-input-weight">Weight</label>
+							<input type="text" id="w-input-weight">
+					</div>
+					<div class="workout-input">
+							<label for="w-input-sets">Sets</label>
+							<input type="text" id="w-input-sets">
+					</div>
+					<div class="workout-input">
+							<label for="w-input-reps">Reps</label>
+							<input type="text" id="w-input-reps"></input>
+					</div>
+			</div>		
 		</div>
 		<div class="modal-footer">
 			<div class="btn-group btn-group-justified" role="group" aria-label="group button">
