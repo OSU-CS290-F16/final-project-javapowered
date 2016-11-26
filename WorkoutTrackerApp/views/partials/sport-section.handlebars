@@ -1,39 +1,39 @@
 <div>
-{{#each exercises}}
-<div class="SportSection col-md-4">
-    <h2>{{section}}<button class="btn btn-primary pull-right">Add Exercise</button></h2>
-    <table class="table table-striped">
-        {{#if isWeightLifting}}
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Exercise</th>
-                <th>Weight</th>
-                <th>Sets</th>
-                <th>Reps</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each workouts}}
-                {{> weight-table-row this}}
-            {{/each}}
-        </tbody>
-        {{else}}
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Distance</th>
-                <th>Time</th>
-                <th>Intensity</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each workouts}}
-                {{> sport-table-row this}}
-            {{/each}}
-        </tbody>
-        {{/if}}
-    </table>
-</div>
-{{/each}}
+    {{#each exercises}}
+    <div class="SportSection col-md-4">
+        <h2>{{section}}<button class="btn btn-primary pull-right" id="add-{{sectionId}}" >Add Exercise</button></h2>
+        <table class="table table-striped">
+            {{#if isWeightLifting}}
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Exercise</th>
+                    <th>Weight</th>
+                    <th>Sets</th>
+                    <th>Reps</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each workouts}}
+                    {{> weight-table-row this}}
+                {{/each}}
+            </tbody>
+            {{else}}
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Distance</th>
+                    <th>Time</th>
+                    <th>Intensity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each workouts}}
+                    {{> sport-table-row this}}
+                {{/each}}
+            </tbody>
+            {{/if}}
+        </table>
+    </div>
+    {{/each}}
 </div>
