@@ -5,7 +5,7 @@ var express = require('express');
 var exphbs = require('express-handlebars');
 
 var home = require('./controllers/home');
-var profile = require('./controllers/home');
+var profile = require('./controllers/profile');
 
 var port = process.env.PORT || 3545;
 var app = express();
@@ -22,6 +22,9 @@ app.use(express.static(path.join(__dirname, 'content')));
 // Use routing controllers for home and profile
 app.use('/', home);
 app.use('/profile', profile);
+app.use('*', function(req, res){
+  res.status(404).render('404');
+})
 
 app.listen(port, function () {
   console.log("== Listening on port", port);
