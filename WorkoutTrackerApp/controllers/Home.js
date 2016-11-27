@@ -22,7 +22,6 @@ Object.keys(workoutsData).forEach(function (type) {
 
 
 router.get('/', function(req, res, next){
-    console.log(req.url)
     res.status(200).render(path.join(staticDir, 'index'), {
         exercises: workoutsData
     });
