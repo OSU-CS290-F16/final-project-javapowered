@@ -6,10 +6,13 @@
 * Status : Incomplete
 */
 
-
+body{
+    background-color: silver;
+}
 
 
 .SportSection{
+    background-color: whitesmoke; 
     border: 1px solid black;
     width: 500px;
     display: inline-block;
