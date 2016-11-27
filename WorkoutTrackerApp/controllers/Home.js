@@ -8,8 +8,6 @@ var router = express.Router();
 var staticDir = path.join(__dirname, '..', 'views');
 var index = fs.readFileSync(path.join(staticDir, 'index.handlebars'), 'utf8');
 
-var weightsWorkouts = [];
-var sportsWorkouts = [];
 
 //since weight lifting has slightly different data
 //we do some pre-processing to add an isWeightLifting property
@@ -23,10 +21,11 @@ Object.keys(workoutsData).forEach(function (type) {
 
 
 
-router.get('/', function(req, res){
+router.get('/', function(req, res, next){
     res.status(200).render(path.join(staticDir, 'index'), {
         exercises: workoutsData
     });
+
 });
 
 module.exports = router;

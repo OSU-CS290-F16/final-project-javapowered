@@ -1,122 +1,126 @@
 ﻿{
     "weight": {
         "section": "Weight Lifting",
-            "workouts": [
-                {
-                    "date": "10/16/16",
-                    "exercise": "Dead Lift",
-                    "weight": 205,
-                    "sets": 3,
-                    "reps": 10
-                },
-                {
-                    "date": "10/16/16",
-                    "exercise": "Bench Press",
-                    "weight": 175,
-                    "sets": 3,
-                    "reps": 10
-                },
-                {
-                    "date": "10/16/16",
-                    "exercise": "Squat",
-                    "weight": 225,
-                    "sets": 5,
-                    "reps": 5
-                },
-                {
-                    "date": "10/16/16",
-                    "exercise": "Rows",
-                    "weight": 135,
-                    "sets": 3,
-                    "reps": 10
-                }
-            ]
-    },
+        "sectionId": "weight",
+        "workouts": [
+            {
+                "date": "10/16/16",
+                "exercise": "Dead Lift",
+                "weight": 205,
+                "sets": 3,
+                "reps": 10
+            },
+            {
+                "date": "10/16/16",
+                "exercise": "Bench Press",
+                "weight": 175,
+                "sets": 3,
+                "reps": 10
+            },
+            {
+                "date": "10/16/16",
+                "exercise": "Squat",
+                "weight": 225,
+                "sets": 5,
+                "reps": 5
+            },
+            {
+                "date": "10/16/16",
+                "exercise": "Rows",
+                "weight": 135,
+                "sets": 3,
+                "reps": 10
+            }
+        ]
+},
     "run": {
         "section": "Running",
-            "workouts": [
-                {
-                    "date": "10/14/16",
-                    "distance": "4 mi",
-                    "time": "45 min",
-                    "intensity": 6
-                },
-                {
-                    "date": "10/26/16",
-                    "distance": "5 mi",
-                    "time": "1hr",
-                    "intensity": 5
-                },
-                {
-                    "date": "11/03/16",
-                    "distance": "2 mi",
-                    "time": ".5 hr",
-                    "intensity": 2
-                },
-                {
-                    "date": "11/23/16",
-                    "distance": "10 mi",
-                    "time": "1.5 hr",
-                    "intensity": 8
-                }
-            ]
-    },
+        "sectionId": "run",
+        "workouts": [
+            {
+                "date": "10/14/16",
+                "distance": "4 mi",
+                "time": "45 min",
+                "intensity": 6
+            },
+            {
+                "date": "10/26/16",
+                "distance": "5 mi",
+                "time": "1hr",
+                "intensity": 5
+            },
+            {
+                "date": "11/03/16",
+                "distance": "2 mi",
+                "time": ".5 hr",
+                "intensity": 2
+            },
+            {
+                "date": "11/23/16",
+                "distance": "10 mi",
+                "time": "1.5 hr",
+                "intensity": 8
+            }
+        ]
+},
     "cycle": {
         "section": "Cycling",
-            "workouts": [
-                {
-                    "date": "10/20/16",
-                    "distance": "20 miles",
-                    "time": "2 hrs",
-                    "intensity": 5
-                },
-                {
-                    "date": "10/25/16",
-                    "distance": "10 miles",
-                    "time": "1 hr",
-                    "intensity": 2
-                },
-                {
-                    "date": "10/27/16",
-                    "distance": "14 miles",
-                    "time": "1.5 hrs",
-                    "intensity": 3
-                },
-                {
-                    "date": "11/10/16",
-                    "distance": "30 miles",
-                    "time": "3 hrs",
-                    "intensity": 6
-                }
-            ]
-    },
+        "sectionId": "cycle",
+        "workouts": [
+            {
+                "date": "10/20/16",
+                "distance": "20 miles",
+                "time": "2 hrs",
+                "intensity": 5
+            },
+            {
+                "date": "10/25/16",
+                "distance": "10 miles",
+                "time": "1 hr",
+                "intensity": 2
+            },
+            {
+                "date": "10/27/16",
+                "distance": "14 miles",
+                "time": "1.5 hrs",
+                "intensity": 3
+            },
+            {
+                "date": "11/10/16",
+                "distance": "30 miles",
+                "time": "3 hrs",
+                "intensity": 6
+            }
+        ]
+},
     "swim": {
         "section": "Swimming",
-            "workouts": [
-                {
-                    "date": "10/22/16",
-                    "distance": "1000 meters",
-                    "time": "45 min",
-                    "intensity": 3
-                },
-                {
-                    "date": "10/26/16",
-                    "distance": "1200 meters",
-                    "time": "1 hr",
-                    "intensity": 4
-                },
-                {
-                    "date": "10/30/16",
-                    "distance": "1500 meters",
-                    "time": "1.5 hrs",
-                    "intensity": 5
-                },
-                {
-                    "date": "11/03/16",
-                    "distance": "1100 meters",
-                    "time": "1 hr",
-                    "intensity": 5
-                }
-            ]
+        "sectionId": "swim",
+        "workouts": [
+            {
+                "date": "10/22/16",
+                "distance": "1000 meters",
+                "time": "45 min",
+                "intensity": 3
+            },
+            {
+                "date": "10/26/16",
+                "distance": "1200 meters",
+                "time": "1 hr",
+                "intensity": 4
+            },
+            {
+                "date": "10/30/16",
+                "distance": "1500 meters",
+                "time": "1.5 hrs",
+                "intensity": 5
+            },
+            {
+                "date": "11/03/16",
+                "distance": "1100 meters",
+                "time": "1 hr",
+                "intensity": 5
+            }
+        ]
     }
 }
