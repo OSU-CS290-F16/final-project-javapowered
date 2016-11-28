@@ -4,7 +4,7 @@
   "description": "Final Project (static?) server",
   "main": "server.js",
   "scripts": {
-    "build": "handlebars views/partials/sport-table-row.handlebars -f content/Scripts/sport-row-template.js",
+    "build": "grunt",
     "prestart": "npm run build",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,6 +22,8 @@
   "dependencies": {
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-handlebars": "^1.0.0",
     "handlebars": "^4.0.6"
   }
 }
