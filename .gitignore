@@ -1,4 +1,5 @@
 node_modules
 npm-debug.log
 
-content/Scripts/sport-row-template.js
+WorkoutTrackerApp/content/Scripts/sport-row-template.js
+WorkoutTrackerApp/content/Scripts/weight-row-template.js
