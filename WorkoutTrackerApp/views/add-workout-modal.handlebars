@@ -1,0 +1,87 @@
+<div id="modal-backdrop" class="hidden"></div>
+
+<!-- Had the idea of having a selector in the modal.
+     Unsure as to whether the workout to-be-selected
+     will be in the modal or have seperate buttons to
+     pull up the modal.
+
+<nav id="workout-selector" class="hidden">
+  <ul class="workout-selector">
+    <li class="navbar-item">Bike</li>
+    <li class="navbar-item">Run</li>
+    <li class="navbar-item">Lift</li>
+  </ul>
+</nav>
+-->
+
+<!-- This is the Running Dialog -->
+<div id="add-Bike-modal" class="hidden">
+  <div id="modal-dialog-bike">
+    <div class="modal-header">
+      <h3>Log your Ride</h3>
+      <button type="button" class="modal-close-button">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="Distance-input-element required">
+        <label for="bike-input-distance">Distance (miles)</label>
+        <input type="text" id="bike-input-distance">
+      </div>
+      <div class="time-input-element">
+        <label for="bike-input-time">Time (hrs)</label>
+        <input type="text" id="bike-input-time">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="modal-cancel-button">Cancel</button>
+      <button type="button" class="modal-accept-button">Add Workout</button>
+    </div>
+  </div>
+</div>
+
+<!-- This is the Running Dialog -->
+<div id="add-Run-modal" class="hidden">
+  <div class="modal-dialog-run">
+    <div class="modal-header">
+      <h3>Log your Run</h3>
+      <button type="button" class="modal-close-button">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="distance-input-element required">
+        <label for="run-input-distance">Distance (miles)</label>
+        <input type="text" id="run-input-distance">
+      </div>
+      <div class="time-input-element">
+        <label for="run-input-time">Time (hrs)</label>
+        <input type="text" id="run-input-time">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="modal-cancel-button">Cancel</button>
+      <button type="button" class="modal-accept-button">Add Workout</button>
+    </div>
+  </div>
+</div>
+
+<!-- This is the Lift Dialog -->
+<div id="add-lift-modal" class="hidden">
+  <div class="modal-dialog-lift">
+    <div class="modal-header">
+      <h3>Log your workout</h3>
+      <button type="button" class="modal-close-button">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="weight-input-element required">
+        <label for="lift-input-weight">Weight (lbs)</label>
+        <input type="text" id="lift-input-weight">
+      </div>
+      <div class="reps-input-element">
+        <label for="lift-input-reps">Reps</label>
+        <input type="text" id="lift-input-reps">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="modal-cancel-button">Cancel</button>
+      <button type="button" class="modal-accept-button">Add Workout</button>
+    </div>
+  </div>
+</div>
