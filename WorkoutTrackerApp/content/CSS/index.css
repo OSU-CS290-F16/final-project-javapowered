@@ -7,11 +7,11 @@
 */
 
 body{
-    background-color: silver;
+    background-color: lightsteelblue;
 }
 
 
-.SportSection{
+.InfoSection{
     background-color: whitesmoke; 
     border: 1px solid black;
     width: 500px;
