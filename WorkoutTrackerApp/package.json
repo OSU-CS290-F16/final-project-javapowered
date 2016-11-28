@@ -1,5 +1,5 @@
 {
-  "name": "CS290-Final-Project",
+  "name": "final-project-javapowered",
   "version": "1.0.0",
   "description": "Final Project (static?) server",
   "main": "server.js",
