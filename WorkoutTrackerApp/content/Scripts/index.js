@@ -1,3 +1,5 @@
+/* Listeners for displaying the "add" modals */
+
 $('#add-weight').on('click', function(event){
     $('#add-workout-modal').modal('show');
 });
