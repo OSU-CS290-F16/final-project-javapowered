@@ -4,19 +4,21 @@
   "description": "Final Project (static?) server",
   "main": "server.js",
   "scripts": {
+    "build": "handlebars views/partials/sport-table-row.handlebars -f content/Scripts/sport-row-template.js",
+    "prestart": "npm run build",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KobaKiju/Powered_By_Java-Rockstar.git"
+    "url": "git+https://github.com/OSU-CS290-F16/final-project-javapowered.git"
   },
   "author": "Dan Van Horn",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/KobaKiju/Powered_By_Java-Rockstar/issues"
+    "url": "https://github.com/OSU-CS290-F16/final-project-javapowered/issues"
   },
-  "homepage": "https://github.com/KobaKiju/Powered_By_Java-Rockstar#readme",
+  "homepage": "https://github.com/OSU-CS290-F16/final-project-javapowered#readme",
   "dependencies": {
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
