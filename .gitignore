@@ -2,5 +2,5 @@ npm-debug.log
 
 WorkoutTrackerApp/content/Scripts/sport-row-template.js
 WorkoutTrackerApp/content/Scripts/weight-row-template.js
-bower_components
-node_modules
+WorkoutTrackerApp/bower_components/
+WorkoutTrackerApp/node_modules/
