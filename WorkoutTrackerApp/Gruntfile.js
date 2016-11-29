@@ -15,20 +15,12 @@ module.exports = function(grunt) {
                     "content/Scripts/weight-row-template.js": "views/partials/weight-table-row.handlebars"
                 }
             }
-        },
-
-        bower: {
-            dev: {
-                dest: "content/",
-                css_dest: "content/CSS",
-                js_dest: "content/Scripts",
-            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-bower');
 
-    grunt.registerTask('default', ["handlebars","bower"])
+    grunt.registerTask('default', ["handlebars"])
 }
 
