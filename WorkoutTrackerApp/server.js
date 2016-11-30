@@ -5,8 +5,8 @@ var express = require('express');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 
-var home = require('./controllers/home');
-var profile = require('./controllers/profile');
+var home = require('./controllers/Home');
+var profile = require('./controllers/Profile');
 
 var port = process.env.PORT || 3545;
 var app = express();
