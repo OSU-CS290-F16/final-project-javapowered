@@ -32,13 +32,16 @@ $('#add-weight').on('click', function(event){
     workoutSaveButton.on('click',function(event){
         if(validateWorkOutModal() == true){
             //build row
-            buildWorkoutRow(dateInput.val(),
+            var builtRowObj = buildWorkoutRow(dateInput.val(),
                             exerciseInput.val(),
                             weightInput.val(),
                             setsInput.val(),
                             repsInput.val());
 
             //find correct row to insert
+            var rowIdx = searchRowIndexBydate('table-weight',dateInput.val());
+            //console.log(rowIdx);
+            $('#table-weight > tbody > tr').eq(rowIdx).before(builtRowObj);
         }
     });
 });
@@ -82,10 +85,19 @@ function buildWorkoutRow(date,exercise,weight,sets,reps){
     return row;
 }
 
-function searchRowIndexBydate(table,date){
-     var tbody = $(table + ' >  tbody');
+function searchRowIndexBydate(tableid,date){
+	var dateFormatted = new Date(date);
 
+	var totalRows = $('#' + tableid +' > tbody > tr').length;
+	var i;
 
+	for(i = 0; i < totalRows;i++){
+		var rowIDate = new Date($('#' + tableid + ' > tbody > tr:eq('+ i +') > td:eq(0)').text());
+		if (Date.parse(rowIDate) <= Date.parse(dateFormatted)) {
+			break;
+		}
+	}
+	return i;
 }
 
 $('#add-run').on('click', function(event){
