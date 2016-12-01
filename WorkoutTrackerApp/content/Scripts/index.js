@@ -47,8 +47,15 @@ $('#add-weight').on('click', function(event){
 
             //find correct row to insert
             var rowIdx = searchRowIndexBydate('table-weight',dateInput.val());
-            //console.log(rowIdx);
-            $('#table-weight > tbody > tr').eq(rowIdx).before(builtRowObj);
+
+            if ((rowIdx + 1)  == ($('#table-weight > tbody > tr').length)) {
+            	$('#table-weight > tbody > tr').eq(rowIdx).after(builtRowObj);
+            }
+            else{
+            	$('#table-weight > tbody > tr').eq(rowIdx).before(builtRowObj);
+            }
+
+
             WorkOutModal.modal('hide');
         }
     });
@@ -142,6 +149,11 @@ function searchRowIndexBydate(tableid,date){
 			break;
 		}
 	}
+
+	if (i >= totalRows){
+		i = totalRows-1;
+	}
+
 	return i;
 }
 
@@ -161,7 +173,14 @@ $('#add-run').on('click', function(event){
 
 			//find correct row to insert
 			var rowIdx = searchRowIndexBydate('table-run',dateInputS.val());
-			$('#table-run > tbody > tr').eq(rowIdx).before(builtRowObj);
+			
+            if ((rowIdx + 1)  == ($('#table-run > tbody > tr').length)) {
+            	$('#table-run > tbody > tr').eq(rowIdx).after(builtRowObj);
+            }
+            else{
+            	$('#table-run > tbody > tr').eq(rowIdx).before(builtRowObj);
+            }
+
 			SportModal.modal('hide');
 		}
 	});
@@ -184,7 +203,14 @@ $('#add-cycle').on('click', function(event){
 
 			//find correct row to insert
 			var rowIdx = searchRowIndexBydate('table-cycle',dateInputS.val());
-			$('#table-cycle > tbody > tr').eq(rowIdx).before(builtRowObj);
+			
+			if ((rowIdx + 1)  == ($('#table-cycle > tbody > tr').length)) {
+            	$('#table-cycle > tbody > tr').eq(rowIdx).after(builtRowObj);
+            }
+            else{
+            	$('#table-cycle > tbody > tr').eq(rowIdx).before(builtRowObj);
+            }
+
 			SportModal.modal('hide');
 		}
 	});
@@ -207,7 +233,14 @@ $('#add-swim').on('click', function(event){
 
 			//find correct row to insert
 			var rowIdx = searchRowIndexBydate('table-swim',dateInputS.val());
-			$('#table-swim > tbody > tr').eq(rowIdx).before(builtRowObj);
+			
+			if ((rowIdx + 1)  == ($('#table-swim > tbody > tr').length)) {
+            	$('#table-swim > tbody > tr').eq(rowIdx).after(builtRowObj);
+            }
+            else{
+            	$('#table-swim > tbody > tr').eq(rowIdx).before(builtRowObj);
+            }
+
 			SportModal.modal('hide');
 		}
 	});
