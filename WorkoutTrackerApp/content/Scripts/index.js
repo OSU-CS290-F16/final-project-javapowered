@@ -2,6 +2,7 @@
 var WorkOutModal = $('#add-workout-modal')
 var SportModal = $('#add-sport-modal');
 var workoutSaveButton = $('#save-workout');
+var SportSaveButton = $('#save-workout-sport');
 
 //workout modal inputs
 var dateInput = $('#weight-datetime');
@@ -96,12 +97,14 @@ function validateSportsModal(){
 		valid = false;
 	}
 
+	//console.log(valid);
+
 	if(valid == false){
 		alert('All textboxes must be filled.');
 		return valid;
 	}
 	else{
-		return true;
+		return valid;
 	}
 }
 
@@ -123,6 +126,8 @@ function buildSportRow(date,distance,time,intensity){
 	row.append($(document.createElement('td')).text(distance));
 	row.append($(document.createElement('td')).text(time));
 	row.append($(document.createElement('td')).text(intensity));
+
+	return row;
 }
 
 function searchRowIndexBydate(tableid,date){
@@ -143,17 +148,67 @@ function searchRowIndexBydate(tableid,date){
 $('#add-run').on('click', function(event){
     SportModal.modal('show');
 
-    
+	//removes previous event listener
+	SportSaveButton.unbind();
 
+	SportSaveButton.on('click',function(event){
+		if(validateSportsModal() == true){
+			//build row
+			var builtRowObj = buildSportRow(dateInputS.val(),
+											distanceInputS.val(),
+											timeInputS.val(),
+											IntensityInputS.val());
 
+			//find correct row to insert
+			var rowIdx = searchRowIndexBydate('table-run',dateInputS.val());
+			$('#table-run > tbody > tr').eq(rowIdx).before(builtRowObj);
+			SportModal.modal('hide');
+		}
+	});
 });
 
 $('#add-cycle').on('click', function(event){
     SportModal.modal('show');
-    //add function to validate data on save here?
+    
+
+    //removes previous event listener
+	SportSaveButton.unbind();
+
+	SportSaveButton.on('click',function(event){
+		if(validateSportsModal() == true){
+			//build row
+			var builtRowObj = buildSportRow(dateInputS.val(),
+											distanceInputS.val(),
+											timeInputS.val(),
+											IntensityInputS.val());
+
+			//find correct row to insert
+			var rowIdx = searchRowIndexBydate('table-cycle',dateInputS.val());
+			$('#table-cycle > tbody > tr').eq(rowIdx).before(builtRowObj);
+			SportModal.modal('hide');
+		}
+	});
 });
 
 $('#add-swim').on('click', function(event){
     SportModal.modal('show');
-    //add function to validate data on save here?
+    
+
+    //removes previous event listener
+	SportSaveButton.unbind();
+
+	SportSaveButton.on('click',function(event){
+		if(validateSportsModal() == true){
+			//build row
+			var builtRowObj = buildSportRow(dateInputS.val(),
+											distanceInputS.val(),
+											timeInputS.val(),
+											IntensityInputS.val());
+
+			//find correct row to insert
+			var rowIdx = searchRowIndexBydate('table-swim',dateInputS.val());
+			$('#table-swim > tbody > tr').eq(rowIdx).before(builtRowObj);
+			SportModal.modal('hide');
+		}
+	});
 });
