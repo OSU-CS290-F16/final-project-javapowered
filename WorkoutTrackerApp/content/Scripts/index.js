@@ -66,21 +66,21 @@ function validateWorkOutModal(){
     if (dateInput.val() == null || dateInput.val() == '') {
         valid = false;
     }
-    if (exerciseInput.val() == null || exerciseInput.val() == '') {
+    if (exerciseInput.val() == null || exerciseInput.val() == '' || !isNaN(exerciseInput.val())) {
         valid = false;
     }
-    if (weightInput.val() == null || weightInput.val() == '') {
+    if (weightInput.val() == null || weightInput.val() == '' || isNaN(weightInput.val())) {
         valid = false;
     }
-    if (setsInput.val() == null || setsInput.val() == '') {
+    if (setsInput.val() == null || setsInput.val() == '' || isNaN(setsInput.val())) {
         valid = false;
     }
-    if (repsInput.val() == null || repsInput.val() == '') {
+    if (repsInput.val() == null || repsInput.val() == '' || isNaN(repsInput.val())) {
         valid = false;
     }
 
     if(valid == false){
-        alert('All textboxes must be filled.');
+        alert('All textboxes must be filled. And Only Numbers');
         return valid;
     }
     else{
@@ -94,20 +94,20 @@ function validateSportsModal(){
 	if (dateInputS.val() == null || dateInputS.val() == '') {
 		valid = false;
 	}
-	if(distanceInputS.val() == null || distanceInputS.val() == ''){
+	if(distanceInputS.val() == null || distanceInputS.val() == '' || isNaN(distanceInputS.val())){
 		valid = false;
 	}
-	if(timeInputS.val() == null || timeInputS.val() == ''){
+	if(timeInputS.val() == null || timeInputS.val() == '' || isNaN(timeInputS.val())){
 		valid = false;
 	}
-	if (IntensityInputS.val() == null || IntensityInputS.val() == '') {
+	if (IntensityInputS.val() == null || IntensityInputS.val() == '' || isNaN(IntensityInputS.val())) {
 		valid = false;
 	}
 
 	//console.log(valid);
 
 	if(valid == false){
-		alert('All textboxes must be filled.');
+		alert('All textboxes must be filled. And Only Numbers');
 		return valid;
 	}
 	else{
@@ -130,8 +130,8 @@ function buildWorkoutRow(date,exercise,weight,sets,reps){
 function buildSportRow(date,distance,time,intensity){
 	var row = $(document.createElement('tr'));
 	row.append($(document.createElement('td')).text(date));
-	row.append($(document.createElement('td')).text(distance));
-	row.append($(document.createElement('td')).text(time));
+	row.append($(document.createElement('td')).text(distance + ' mi'));
+	row.append($(document.createElement('td')).text(time + ' hr'));
 	row.append($(document.createElement('td')).text(intensity));
 
 	return row;
