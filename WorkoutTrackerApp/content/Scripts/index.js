@@ -10,6 +10,12 @@ var weightInput = $('#w-input-weight');
 var setsInput = $('#w-input-sets');
 var repsInput = $('#w-input-reps');
 
+//Sports modal inputs
+var dateInputS = $('#sport-datetime');
+var distanceInputS = $('#s-input-distance');
+var timeInputS = $('#s-input-time');
+var IntensityInputS = $('#s-input-intensity');
+
 
 $('#weight-datetime').datetimepicker({ 
     format: 'L'
@@ -42,6 +48,7 @@ $('#add-weight').on('click', function(event){
             var rowIdx = searchRowIndexBydate('table-weight',dateInput.val());
             //console.log(rowIdx);
             $('#table-weight > tbody > tr').eq(rowIdx).before(builtRowObj);
+            WorkOutModal.modal('hide');
         }
     });
 });
@@ -73,6 +80,31 @@ function validateWorkOutModal(){
     }
 }
 
+function validateSportsModal(){
+	var valid = true;
+
+	if (dateInputS.val() == null || dateInputS.val() == '') {
+		valid = false;
+	}
+	if(distanceInputS.val() == null || distanceInputS.val() == ''){
+		valid = false;
+	}
+	if(timeInputS.val() == null || timeInputS.val() == ''){
+		valid = false;
+	}
+	if (IntensityInputS.val() == null || IntensityInputS.val() == '') {
+		valid = false;
+	}
+
+	if(valid == false){
+		alert('All textboxes must be filled.');
+		return valid;
+	}
+	else{
+		return true;
+	}
+}
+
 function buildWorkoutRow(date,exercise,weight,sets,reps){
     var row = $(document.createElement('TR'));
     row.append($(document.createElement("td")).text(date));
@@ -83,6 +115,14 @@ function buildWorkoutRow(date,exercise,weight,sets,reps){
 
     //console.log(row);
     return row;
+}
+
+function buildSportRow(date,distance,time,intensity){
+	var row = $(document.createElement('tr'));
+	row.append($(document.createElement('td')).text(date));
+	row.append($(document.createElement('td')).text(distance));
+	row.append($(document.createElement('td')).text(time));
+	row.append($(document.createElement('td')).text(intensity));
 }
 
 function searchRowIndexBydate(tableid,date){
@@ -102,7 +142,10 @@ function searchRowIndexBydate(tableid,date){
 
 $('#add-run').on('click', function(event){
     SportModal.modal('show');
-    //add function to validate data on save here?
+
+    
+
+
 });
 
 $('#add-cycle').on('click', function(event){
