@@ -17,6 +17,9 @@ var distanceInputS = $('#s-input-distance');
 var timeInputS = $('#s-input-time');
 var IntensityInputS = $('#s-input-intensity');
 
+//CHANGE IN FINAL
+var PostDataDestination = "http://www.google.com";
+
 
 $('#weight-datetime').datetimepicker({ 
     format: 'L'
@@ -38,6 +41,9 @@ $('#add-weight').on('click', function(event){
 
     workoutSaveButton.on('click',function(event){
         if(validateWorkOutModal() == true){
+
+			PostToServer(buildWorkoutJSON());
+
             //build row
             var builtRowObj = buildWorkoutRow(dateInput.val(),
                             exerciseInput.val(),
@@ -60,6 +66,20 @@ $('#add-weight').on('click', function(event){
         }
     });
 });
+
+function PostToServer(JSONDATA){
+	$.ajax({
+		method:"POST",
+		data:JSONDATA,
+		url: PostDataDestination,
+		success:function(data){
+			//append row or nothing.
+		},
+		error:function(jqXHR,textStatus,errorThrown){
+			alert("ERROR: row data not sent!");
+		}
+	});
+}
 
 function validateWorkOutModal(){
     var valid = true;
@@ -115,6 +135,27 @@ function validateSportsModal(){
 	}
 }
 
+function buildWorkoutJSON(){
+	return {
+		"type":"WeightLifting",
+		"date":dateInput.val(),
+		"exercise":exerciseInput.val(),
+		"weight":weightInput.val(),
+		"sets":setsInput.val(),
+		"reps":repsInput.val()
+	};
+}
+
+function buildSportSectionJSON(SectionType){
+	return {
+		"type":SectionType,
+		"date":dateInputS.val(),
+		"distance":distanceInputS.val(),
+		"time":timeInputS.val(),
+		"intensity":IntensityInputS.val()
+	};
+}
+
 function buildWorkoutRow(date,exercise,weight,sets,reps){
     var row = $(document.createElement('TR'));
     row.append($(document.createElement("td")).text(date));
@@ -165,6 +206,9 @@ $('#add-run').on('click', function(event){
 
 	SportSaveButton.on('click',function(event){
 		if(validateSportsModal() == true){
+
+			PostToServer(buildSportSectionJSON("run"));
+
 			//build row
 			var builtRowObj = buildSportRow(dateInputS.val(),
 											distanceInputS.val(),
@@ -195,6 +239,9 @@ $('#add-cycle').on('click', function(event){
 
 	SportSaveButton.on('click',function(event){
 		if(validateSportsModal() == true){
+
+			PostToServer(buildSportSectionJSON("cycle"));
+
 			//build row
 			var builtRowObj = buildSportRow(dateInputS.val(),
 											distanceInputS.val(),
@@ -225,6 +272,9 @@ $('#add-swim').on('click', function(event){
 
 	SportSaveButton.on('click',function(event){
 		if(validateSportsModal() == true){
+
+			PostToServer(buildSportSectionJSON("swim"));
+
 			//build row
 			var builtRowObj = buildSportRow(dateInputS.val(),
 											distanceInputS.val(),
