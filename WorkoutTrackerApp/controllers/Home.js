@@ -1,8 +1,8 @@
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
-var workoutsData = require('../models/workouts');
-var mySQL = require('mysql');
+//var workoutsData = require('../models/workouts');
+var mySQL = require('promise-mysql');
 var DAL = require('../DAL/workoutsDAL')
 
 var router = express.Router();
@@ -14,45 +14,40 @@ var mysqlHost = process.env.MYSQL_HOST;
 var mysqlUser = process.env.MYSQL_USER;
 var mysqlPassword = process.env.MYSQL_PASSWORD;
 var mysqlDB = process.env.MYSQL_DB;
-var conn = mySQL.createConnection({
+var connection;
+var workouts = {};
+
+mySQL.createConnection({
   host: mysqlHost,
   user: mysqlUser,
   password: mysqlPassword,
-  database: mysqlDB
-});
-
-conn.connect(function(err) {
-  if (err) {
-    console.log("== Unable to make connection to MySQL Database.")
-    throw err;
-  }
-});
-
-var workoutsData = {
-    weight: DAL.getWeights(conn)
-}
-
-//since weight lifting has slightly different data
-//we do some pre-processing to add an isWeightLifting property
-/*Object.keys(workoutsData).forEach(function (type) {
-    if (workoutsData[type].section === 'Weight Lifting') {
-        workoutsData[type].isWeightLifting = true;
-    } else {
-        workoutsData[type].isWeightLifting = false;
-    }
-});
-*/
+  database: mysqlDB,
+}).then(function(conn) {
+    connection = conn;
+    return connection.query("SELECT * FROM weights");
+}).then(function (rows){
+    workouts.weight = DAL.getWeightWorkouts(rows);
+}).then(function () {
+    return connection.query("SELECT * FROM run");
+}).then(function(rows){
+    workouts.run = DAL.getRunWorkouts(rows);
+}).then(function () {
+    return connection.query("SELECT * FROM cycle");
+}).then(function(rows){
+    workouts.cycle = DAL.getCycleWorkouts(rows);
+}).then(function () {
+    return connection.query("SELECT * FROM swim");
+}).then(function (rows) {
+    workouts.swim = DAL.getSwimWorkouts(rows);
+})
+console.log(workouts);
 
 
 router.get('/', function(req, res, next){
-    setTimeout(function(){
-        res.status(200).render(path.join(staticDir, 'index'), {
-            exercises: workoutsData
-        })
-    },2000);
-    
 
-
+    res.render(path.join(staticDir, 'index'), {
+        exercises: workouts
+    });
 });
 
 module.exports = router;
