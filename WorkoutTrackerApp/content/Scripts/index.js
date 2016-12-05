@@ -18,7 +18,8 @@ var timeInputS = $('#s-input-time');
 var IntensityInputS = $('#s-input-intensity');
 
 //CHANGE IN FINAL
-var PostDataDestination = "http://www.google.com";
+var PostDataDestination = "./add";
+var DeleteDatadestination = "./delete";
 
 
 $('#weight-datetime').datetimepicker({ 
@@ -137,7 +138,7 @@ function validateSportsModal(){
 
 function buildWorkoutJSON(){
 	return {
-		"type":"WeightLifting",
+		"type":"weights",
 		"date":dateInput.val(),
 		"exercise":exerciseInput.val(),
 		"weight":weightInput.val(),
@@ -164,6 +165,39 @@ function buildWorkoutRow(date,exercise,weight,sets,reps){
     row.append($(document.createElement("td")).text(sets));
     row.append($(document.createElement("td")).text(reps));
 
+	var dataCell = $(document.createElement('td'));
+	var deletebtn = $(document.createElement('button')).text("Delete Exercise");
+
+	deletebtn.on('click', function(event){
+		var Row = $(this).parent().parent();
+		//preping JSON for searching purposes
+		var JSON =  {
+			"type":"weight",
+			"date":$($(Row)[0].children[0]).text() ,
+			"exercise":$($(Row)[0].children[1]).text() ,
+			"weight":$($(Row)[0].children[2]).text() ,
+			"sets":$($(Row)[0].children[3]).text() ,
+			"reps":$($(Row)[0].children[4]).text() 
+		};
+		//creating request
+		$.ajax({
+			method:"POST",
+			data:JSON,
+			url: DeleteDatadestination,
+			success:function(data){
+				Row.remove();
+			},
+			error:function(jqXHR,textStatus,errorThrown){
+				alert("ERROR: row data not sent! Row not deleted.");
+			}
+		});
+	});
+
+	deletebtn.addClass('btn btn-danger btn-xs pull-right Delete-Row-Weight');
+	dataCell.append(deletebtn);
+
+	row.append(dataCell);
+
     //console.log(row);
     return row;
 }
@@ -174,6 +208,41 @@ function buildSportRow(date,distance,time,intensity){
 	row.append($(document.createElement('td')).text(distance + ' mi'));
 	row.append($(document.createElement('td')).text(time + ' hr'));
 	row.append($(document.createElement('td')).text(intensity));
+
+
+	var dataCell = $(document.createElement('td'));
+	var deletebtn = $(document.createElement('button')).text("Delete Exercise");
+	
+	deletebtn.on('click', function(event){
+		var Row = $(this).parent().parent();
+		//preping JSON for searching purposes
+		//console.log($(Row.parent().parent()).attr('id').split('-')[1]);
+
+		var JSON = {
+			"type":$(Row.parent().parent()).attr('id').split('-')[1],
+			"date":$($(Row)[0].children[0]).text(),
+			"distance":$($(Row)[0].children[1]).text(),
+			"time":$($(Row)[0].children[2]).text(),
+			"intensity":$($(Row)[0].children[3]).text()
+		};
+		//console.log(JSON);
+		//creating request
+		$.ajax({
+			method:"POST",
+			data:JSON,
+			url: DeleteDatadestination,
+			success:function(data){
+				Row.remove();
+			},
+			error:function(jqXHR,textStatus,errorThrown){
+				alert("ERROR: row data not sent! Row not deleted.");
+			}
+		});
+	});
+	deletebtn.addClass('btn btn-danger btn-xs pull-right Delete-Row-Sport');
+	dataCell.append(deletebtn);
+
+	row.append(dataCell);
 
 	return row;
 }
@@ -295,3 +364,59 @@ $('#add-swim').on('click', function(event){
 		}
 	});
 });
+
+
+
+
+$('.Delete-Row-Weight').on('click', function(event){
+	var Row = $(this).parent().parent();
+	//preping JSON for searching purposes
+	var JSON =  {
+		"type":"weight",
+		"date":$($(Row)[0].children[0]).text() ,
+		"exercise":$($(Row)[0].children[1]).text() ,
+		"weight":$($(Row)[0].children[2]).text() ,
+		"sets":$($(Row)[0].children[3]).text() ,
+		"reps":$($(Row)[0].children[4]).text() 
+	};
+	//creating request
+	$.ajax({
+		method:"POST",
+		data:JSON,
+		url: DeleteDatadestination,
+		success:function(data){
+			Row.remove();
+		},
+		error:function(jqXHR,textStatus,errorThrown){
+			alert("ERROR: row data not sent! Row not deleted.");
+		}
+	});
+});
+
+$('.Delete-Row-Sport').on('click', function(event){
+	var Row = $(this).parent().parent();
+	//preping JSON for searching purposes
+	//console.log($(Row.parent().parent()).attr('id').split('-')[1]);
+
+	var JSON = {
+		"type":$(Row.parent().parent()).attr('id').split('-')[1],
+		"date":$($(Row)[0].children[0]).text(),
+		"distance":$($(Row)[0].children[1]).text(),
+		"time":$($(Row)[0].children[2]).text(),
+		"intensity":$($(Row)[0].children[3]).text()
+	};
+	//console.log(JSON);
+	//creating request
+	$.ajax({
+		method:"POST",
+		data:JSON,
+		url: DeleteDatadestination,
+		success:function(data){
+			Row.remove();
+		},
+		error:function(jqXHR,textStatus,errorThrown){
+			alert("ERROR: row data not sent! Row not deleted.");
+		}
+	});
+});
+

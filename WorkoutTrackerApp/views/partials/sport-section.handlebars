@@ -1,7 +1,10 @@
 <div>
     {{#each exercises}}
     <div class="InfoSection col-md-4">
-        <h2>{{section}}<button class="btn btn-primary pull-right" id="add-{{sectionId}}" >Add Exercise</button></h2>
+        <h2>
+        	{{section}}
+        	<button class="btn btn-primary pull-right" id="add-{{sectionId}}" >Add Exercise</button>
+        </h2>
         <table id="table-{{sectionId}}" class="table table-striped">
             {{#if isWeightLifting}}
             <thead>
@@ -11,6 +14,7 @@
                     <th>Weight</th>
                     <th>Sets</th>
                     <th>Reps</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +29,7 @@
                     <th>Distance</th>
                     <th>Time</th>
                     <th>Intensity</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
