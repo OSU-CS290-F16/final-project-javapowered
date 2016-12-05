@@ -401,8 +401,8 @@ $('.Delete-Row-Sport').on('click', function(event){
 	var JSON = {
 		"type":$(Row.parent().parent()).attr('id').split('-')[1],
 		"date":$($(Row)[0].children[0]).text(),
-		"distance":$($(Row)[0].children[1]).text(),
-		"time":$($(Row)[0].children[2]).text(),
+		"distance":$($(Row)[0].children[1]).text().split(' ')[0],
+		"time":$($(Row)[0].children[2]).text().split(' ')[0],
 		"intensity":$($(Row)[0].children[3]).text()
 	};
 	//console.log(JSON);
