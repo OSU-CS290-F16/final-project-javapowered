@@ -17,37 +17,43 @@ var mysqlDB = process.env.MYSQL_DB;
 var connection;
 var workouts = {};
 
-mySQL.createConnection({
-  host: mysqlHost,
-  user: mysqlUser,
-  password: mysqlPassword,
-  database: mysqlDB,
-}).then(function(conn) {
-    connection = conn;
-    return connection.query("SELECT * FROM weights");
-}).then(function (rows){
-    workouts.weight = DAL.getWeightWorkouts(rows);
-}).then(function () {
-    return connection.query("SELECT * FROM run");
-}).then(function(rows){
-    workouts.run = DAL.getRunWorkouts(rows);
-}).then(function () {
-    return connection.query("SELECT * FROM cycle");
-}).then(function(rows){
-    workouts.cycle = DAL.getCycleWorkouts(rows);
-}).then(function () {
-    return connection.query("SELECT * FROM swim");
-}).then(function (rows) {
-    workouts.swim = DAL.getSwimWorkouts(rows);
-})
-console.log(workouts);
-
 
 router.get('/', function(req, res, next){
+    mySQL.createConnection({
+    host: mysqlHost,
+    user: mysqlUser,
+    password: mysqlPassword,
+    database: mysqlDB,
+    }).then(function(conn) {
+        connection = conn;
+        return connection.query("SELECT * FROM weights");
+    }).then(function (rows){
+        workouts.weight = DAL.getWeightWorkouts(rows);
+    }).then(function () {
+        return connection.query("SELECT * FROM run");
+    }).then(function(rows){
+        workouts.run = DAL.getRunWorkouts(rows);
+    }).then(function () {
+        return connection.query("SELECT * FROM cycle");
+    }).then(function(rows){
+        workouts.cycle = DAL.getCycleWorkouts(rows);
+    }).then(function () {
+        return connection.query("SELECT * FROM swim");
+    }).then(function (rows) {
+        workouts.swim = DAL.getSwimWorkouts(rows);
+    }).then(function(){
+        res.render(path.join(staticDir, 'index'), {
+            exercises: workouts
+        });
+    })
 
-    res.render(path.join(staticDir, 'index'), {
-        exercises: workouts
-    });
+
 });
+
+//ToDo: add POST goes here
+
+//TOdo: delete POST goes here
+
+
 
 module.exports = router;
