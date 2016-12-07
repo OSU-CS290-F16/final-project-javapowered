@@ -14,7 +14,7 @@ module.exports = {
             var workout = {
                 date: row.date,
                 exercise: row.exercise,
-                weight: rows.weight,
+                weight: row.weight,
                 sets: row.sets,
                 reps: row.reps
             }
