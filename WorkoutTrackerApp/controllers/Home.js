@@ -51,9 +51,44 @@ router.get('/', function(req, res, next){
 });
 
 //ToDo: add POST goes here
+/*
+router.post('/add', function(req, res){
+  mySQL.createConnection({
+  host: mysqlHost,
+  user: mysqlUser,
+  password: mysqlPassword,
+  database: mysqlDB,
+  }).then(function(conn) {
+      connection = conn;
+      connection.query("INSERT INTO " + tablename + " VALUES (NULL," +
+                        ));
+  }
+  console.log('Added workout to table ' + tableName );
+});
+*/
+
 
 //TOdo: delete POST goes here
+//Create Action Listener for delete button
+/*
 
+//Added id="deleteButton" to sport-table-row.handlebars. May remove?
 
+var deleteButton = document.getElementById("deleteButton");
+
+deleteButton.addEventListener("click", function(req, res, next, tableName, workoutId) {
+      mySQL.createConnection({
+      host: mysqlHost,
+      user: mysqlUser,
+      password: mysqlPassword,
+      database: mysqlDB,
+      }).then(function(conn) {
+          connection = conn;
+          connection.query("DELETE FROM " + tableName + " WHERE workoutId=\x27" + workoutId + "\x27;");
+                                                                          //May not need quotes for workoutId
+      }
+      console.log('Deleted workout with ID' + workoutId + ' from table ' + tableName);
+});
+*/
 
 module.exports = router;
