@@ -172,6 +172,7 @@ function buildWorkoutRow(date,exercise,weight,sets,reps){
 		var Row = $(this).parent().parent();
 		//preping JSON for searching purposes
 		var JSON =  {
+			"workoutId": $($(Row)[0]).attr('data'),
 			"type":"weight",
 			"date":$($(Row)[0].children[0]).text() ,
 			"exercise":$($(Row)[0].children[1]).text() ,
@@ -219,13 +220,14 @@ function buildSportRow(date,distance,time,intensity){
 		//console.log($(Row.parent().parent()).attr('id').split('-')[1]);
 
 		var JSON = {
+			"workoutId": $($(Row)[0]).attr('data'),
 			"type":$(Row.parent().parent()).attr('id').split('-')[1],
 			"date":$($(Row)[0].children[0]).text(),
 			"distance":$($(Row)[0].children[1]).text(),
 			"time":$($(Row)[0].children[2]).text(),
 			"intensity":$($(Row)[0].children[3]).text()
 		};
-		//console.log(JSON);
+		console.log(JSON);
 		//creating request
 		$.ajax({
 			method:"POST",
@@ -372,6 +374,7 @@ $('.Delete-Row-Weight').on('click', function(event){
 	var Row = $(this).parent().parent();
 	//preping JSON for searching purposes
 	var JSON =  {
+		"workoutId": $($(Row)[0]).attr('data'),
 		"type":"weight",
 		"date":$($(Row)[0].children[0]).text() ,
 		"exercise":$($(Row)[0].children[1]).text() ,
@@ -399,13 +402,14 @@ $('.Delete-Row-Sport').on('click', function(event){
 	//console.log($(Row.parent().parent()).attr('id').split('-')[1]);
 
 	var JSON = {
+		"workoutId": $($(Row)[0]).attr('data'),
 		"type":$(Row.parent().parent()).attr('id').split('-')[1],
 		"date":$($(Row)[0].children[0]).text(),
 		"distance":$($(Row)[0].children[1]).text().split(' ')[0],
 		"time":$($(Row)[0].children[2]).text().split(' ')[0],
 		"intensity":$($(Row)[0].children[3]).text()
 	};
-	//console.log(JSON);
+	console.log(JSON);
 	//creating request
 	$.ajax({
 		method:"POST",

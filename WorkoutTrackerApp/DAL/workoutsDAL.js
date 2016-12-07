@@ -12,6 +12,7 @@ module.exports = {
         }
         rows.forEach(function(row){
             var workout = {
+                workoutId: row.workoutId,
                 date: row.date,
                 exercise: row.exercise,
                 weight: row.weight,
@@ -31,6 +32,7 @@ module.exports = {
         }
         rows.forEach(function(row){
             var workout = {
+                workoutId: row.workoutId,
                 date: row.date,
                 distance: row.distance,
                 time: row.time,
@@ -49,6 +51,7 @@ module.exports = {
         }
         rows.forEach(function(row){
             var workout = {
+                workoutId: row.workoutId,
                 date: row.date,
                 distance: row.distance,
                 time: row.time,
@@ -67,6 +70,7 @@ module.exports = {
         }
         rows.forEach(function(row){
             var workout = {
+                workoutId: row.workoutId,
                 date: row.date,
                 distance: row.distance,
                 time: row.time,
