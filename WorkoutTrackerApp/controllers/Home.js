@@ -78,6 +78,7 @@ router.post('/add/:table/:date/:val1/:val2/:val3/:val4', function(req, res){
                           variable3 + ");"
                           );
               }
+              break;
                           //Are Section and SectionId really necessary?
         default: {
           connection.query("INSERT INTO " + tableName + " VALUES " +
