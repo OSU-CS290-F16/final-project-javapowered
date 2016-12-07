@@ -50,9 +50,18 @@ router.get('/', function(req, res, next){
 
 });
 
-//ToDo: add POST goes here
-/*
-router.post('/add', function(req, res){
+//Add row Post
+//The add button on the modal needs to pass the necessary table and varialbes to the url.
+//This routing will pull it's parameters from the url
+//I think this will work, but I can't test it due to database connection issues (12/7/16, 5:13am)
+router.post('/add/:table/:date/:val1/:val2/:val3/:val4', function(req, res){
+  var tableName = request.params.table;  //Table name
+  var workoutDate = request.params.date; //Date
+  var variable1 = request.params.val1;   //Weight or Distance
+  var variable2 = request.params.val2;   //Sets or Time
+  var variable3 = request.params.val3;   //Reps or Intensity
+  var variable4 = request.params.val4;   //Weight Type
+
   mySQL.createConnection({
   host: mysqlHost,
   user: mysqlUser,
@@ -60,20 +69,37 @@ router.post('/add', function(req, res){
   database: mysqlDB,
   }).then(function(conn) {
       connection = conn;
-      connection.query("INSERT INTO " + tablename + " VALUES (NULL," +
-                        ));
+
+      switch(tableName) {
+        case weights: {
+          connection.query("INSERT INTO weights VALUES " +
+                          "(1,NULL,\x22Weight Lifting\x22,\x22weight\x22," +
+                          workoutDate + "," + variable1 + "," + variable2 + "," +
+                          variable3 + ");"
+                          );
+              }
+                          //Are Section and SectionId really necessary?
+        default: {
+          connection.query("INSERT INTO " + tableName + " VALUES " +
+                          "(1,NULL,\x22section\x22,\x22sectionId\x22," +
+                          workoutDate + "," + variable4 + "," + variable1 + "," +
+                          variable2 + "," + variable3 + ");"
+                          );
+              }
+          }
+      );
   }
   console.log('Added workout to table ' + tableName );
 });
-*/
+
+
 
 //Delete row Post
 //The delete button needs to pass the necessary table and ID to the url.
 //This routing will pull it's parameters from the url
 //I think this will work, but I can't test it due to database connection issues (12/7/16, 3:59am)
 router.post('/delete/:table/:Id', function(req, res) {
-      //Passing Params to routing via url
-      var tableName = request.params.tableName;
+      var tableName = request.params.table;
       var workoutId = request.params.Id;
 
       mySQL.createConnection({
