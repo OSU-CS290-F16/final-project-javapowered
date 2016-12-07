@@ -3,7 +3,9 @@ var fs = require('fs');
 var path = require('path');
 //var workoutsData = require('../models/workouts');
 var mySQL = require('promise-mysql');
-var DAL = require('../DAL/workoutsDAL')
+var DAL = require('../DAL/workoutsDAL');
+var bodyParser = require('body-parser')
+
 
 var router = express.Router();
 
@@ -16,6 +18,8 @@ var mysqlPassword = process.env.MYSQL_PASSWORD;
 var mysqlDB = process.env.MYSQL_DB;
 var connection;
 var workouts = {};
+
+router.use(bodyParser.urlencoded({extended: false}));
 
 
 router.get('/', function(req, res, next){
@@ -54,14 +58,29 @@ router.get('/', function(req, res, next){
 //The add button on the modal needs to pass the necessary table and varialbes to the url.
 //This routing will pull it's parameters from the url
 //I think this will work, but I can't test it due to database connection issues (12/7/16, 5:13am)
-router.post('/add/:table/:date/:val1/:val2/:val3/:val4', function(req, res){
-  var tableName = request.params.table;  //Table name
-  var workoutDate = request.params.date; //Date
-  var variable1 = request.params.val1;   //Weight or Distance
-  var variable2 = request.params.val2;   //Sets or Time
-  var variable3 = request.params.val3;   //Reps or Intensity
-  var variable4 = request.params.val4;   //Weight Type
+router.post('/add', function(req, res){
+  
+  //if the type is "weights" then the db table has different columns than 
+  // the other db tables
+  if(req.body.type === "weight"){
+    var tableName = "weights";  
+    var workoutDate = req.body.date; //Date
+    var exercise = req.body.exercise; //exercise
+    var weight = req.body.weight;   //Weight 
+    var sets = req.body.sets;   //Sets
+    var reps = req.params.reps;   //Reps 
+  }else{
+    var tableName = req.body.type;  //Table name == type
+    var workoutDate = req.body.date; //Date
+    var distance = req.body.distance;   //Weight 
+    var intensity = req.body.intensity;   //Sets
+  }
 
+
+  var connection;
+
+  console.log(req.body);
+  
   mySQL.createConnection({
   host: mysqlHost,
   user: mysqlUser,
@@ -69,28 +88,22 @@ router.post('/add/:table/:date/:val1/:val2/:val3/:val4', function(req, res){
   database: mysqlDB,
   }).then(function(conn) {
       connection = conn;
-
-      switch(tableName) {
-        case weights: {
+  }).then(function(){
+        if(tableName === 'weights'){
           connection.query("INSERT INTO weights VALUES " +
                           "(1,NULL,\x22Weight Lifting\x22,\x22weight\x22," +
-                          workoutDate + "," + variable1 + "," + variable2 + "," +
-                          variable3 + ");"
+                          workoutDate + "," + exercise + "," + weight + "," +
+                          sets + "," + reps + ");"
                           );
-              }
-              break;
-                          //Are Section and SectionId really necessary?
-        default: {
+        }else{
           connection.query("INSERT INTO " + tableName + " VALUES " +
                           "(1,NULL,\x22section\x22,\x22sectionId\x22," +
                           workoutDate + "," + variable4 + "," + variable1 + "," +
                           variable2 + "," + variable3 + ");"
-                          );
-              }
-          }
-      );
-  }
-  console.log('Added workout to table ' + tableName );
+                          )
+        }
+  });
+  res.sendStatus(200);
 });
 
 
@@ -99,9 +112,15 @@ router.post('/add/:table/:date/:val1/:val2/:val3/:val4', function(req, res){
 //The delete button needs to pass the necessary table and ID to the url.
 //This routing will pull it's parameters from the url
 //I think this will work, but I can't test it due to database connection issues (12/7/16, 3:59am)
-router.post('/delete/:table/:Id', function(req, res) {
-      var tableName = request.params.table;
-      var workoutId = request.params.Id;
+router.post('/delete', function(req, res) {
+      if(req.body.type = 'weight'){
+          var tableName = 'weights';
+      }else{
+          var tableName = req.body.type;
+      }
+        
+
+      var workoutId = req.body.workoutId;
 
       mySQL.createConnection({
       host: mysqlHost,
@@ -110,10 +129,10 @@ router.post('/delete/:table/:Id', function(req, res) {
       database: mysqlDB,
       }).then(function(conn) {
           connection = conn;
-          connection.query('SELECT * FROM ' + tableName + '; '
-                         + 'DELETE FROM ' + tableName + ' WHERE workoutId=' + workoutId + ';');
-      }
+          connection.query('DELETE FROM ' + tableName + ' WHERE workoutId=' + workoutId + ';');
+      });
       console.log('Deleted workout with ID' + workoutId + ' from table ' + tableName);
+      res.sendStatus(200);
 });
 
 module.exports = router;
