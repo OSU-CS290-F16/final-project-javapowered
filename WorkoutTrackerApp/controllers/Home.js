@@ -30,7 +30,7 @@ router.get('/', function(req, res, next){
     database: mysqlDB,
     }).then(function(conn) {
         connection = conn;
-        return connection.query("SELECT * FROM weights");
+        return connection.query("SELECT * FROM weights_test2");
     }).then(function (rows){
         workouts.weight = DAL.getWeightWorkouts(rows);
     }).then(function () {
@@ -90,7 +90,7 @@ router.post('/add', function(req, res){
       connection = conn;
   }).then(function(){
         if(tableName === 'weights'){
-          connection.query("INSERT INTO weights VALUES " +
+          connection.query("INSERT INTO weights_test2 VALUES " +
                           "(1,NULL,\x22Weight Lifting\x22,\x22weight\x22," +
                           workoutDate + "," + exercise + "," + weight + "," +
                           sets + "," + reps + ");"
@@ -114,7 +114,7 @@ router.post('/add', function(req, res){
 //I think this will work, but I can't test it due to database connection issues (12/7/16, 3:59am)
 router.post('/delete', function(req, res) {
       if(req.body.type = 'weight'){
-          var tableName = 'weights';
+          var tableName = 'weights_test2';
       }else{
           var tableName = req.body.type;
       }
