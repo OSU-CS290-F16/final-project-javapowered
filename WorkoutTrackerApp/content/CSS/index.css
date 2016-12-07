@@ -10,15 +10,40 @@ body{
     background: url("../Images/dark_background.png");
 }
 
+#index-title{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40pt;
+    color: ghostwhite;
+}
+
+h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24pt;
+    color: black;
+}
 
 .InfoSection{
-    background-color: ghostwhite; 
+    background-color: whitesmoke; 
     border: 1px solid black;
-    width: 500px;
+    display: flex;
+    flex-direction: column;
+    /*width: 500px;*/
     padding: 25px 25px 25px 25px;
     margin-top: 50px;
     margin-right: 25px;
     border-radius: 15px;
+}
+
+#table-weight,
+#table-cycle,
+#table-run,
+#table-swim {
+    max-height: 300px;
+}
+
+.scrolly {
+    overflow-y: scroll;
+    height: 100%;
 }
 
 
