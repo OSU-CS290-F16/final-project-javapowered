@@ -74,7 +74,7 @@ function PostToServer(JSONDATA){
 		data:JSONDATA,
 		url: PostDataDestination,
 		success:function(data){
-			//append row or nothing.
+			location.reload();
 		},
 		error:function(jqXHR,textStatus,errorThrown){
 			alert("ERROR: row data not sent!");
@@ -138,7 +138,7 @@ function validateSportsModal(){
 
 function buildWorkoutJSON(){
 	return {
-		"type":"weights",
+		"type":"weight",
 		"date":dateInput.val(),
 		"exercise":exerciseInput.val(),
 		"weight":weightInput.val(),
