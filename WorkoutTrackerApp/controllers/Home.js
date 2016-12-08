@@ -89,18 +89,18 @@ router.post('/add', function(req, res){
   }).then(function(conn) {
       connection = conn;
   }).then(function(){
-        if(tableName === 'weights'){
+                if(tableName === 'weights'){
           connection.query("INSERT INTO weights_test2 VALUES " +
-                          "(1,NULL,\x22Weight Lifting\x22,\x22weight\x22," +
+                          "(1,NULL,\x22Weight Lifting\x22,\x22weights\x22," +
                           workoutDate + "," + exercise + "," + weight + "," +
                           sets + "," + reps + ");"
                           );
         }else{
           connection.query("INSERT INTO " + tableName + " VALUES " +
-                          "(1,NULL,\x22section\x22,\x22sectionId\x22," +
-                          workoutDate + "," + variable4 + "," + variable1 + "," +
-                          variable2 + "," + variable3 + ");"
-                          )
+                          "(1,NULL," + section + "," + tableName + "," +
+                          workoutDate + "," + distance + "," + time + "," +
+                          intensity + ");"
+                          );
         }
   });
   res.sendStatus(200);
