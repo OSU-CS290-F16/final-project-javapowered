@@ -62,8 +62,8 @@ router.post('/add', function(req, res){
   
   //if the type is "weights" then the db table has different columns than 
   // the other db tables
-  console.log(req.body)
-  if(req.body.type === "weights"){
+
+  if(req.body.type === "weight"){
     var tableName = "weights";  
     var workoutDate = req.body.date; //Date
     var exercise = req.body.exercise; //exercise
@@ -73,26 +73,27 @@ router.post('/add', function(req, res){
   }else{
     var tableName = req.body.type;  //Table name == type
     var workoutDate = req.body.date; //Date
-    var distance = req.body.distance;   //Weight
-    var time = req.body.time;   //Time
-    var intensity = req.body.intensity;   //Sets
+    var distance = req.body.distance;   
+    var time = req.body.time;   
+    var intensity = req.body.intensity;   
   }
 
+  // to build the section column for our insertion
   var section;
-  if(req.body.type === 'weights'){
-      section = 'Weight Lifting';
-  }else if(req.body.type == 'run'){
-      section = 'Running';
-  }else if(req.body.type == 'swim'){
-      section = 'Swimming';
+  if(req.body.type === "weight"){
+      section = "Weight Lifting";
+  }else if(req.body.type === "run"){
+      section = "Running";
+  }else if(req.body.type === "swim"){
+      section = "Swimming";
   }else {
-      section = 'Cycling';
+      section = "Cycling";
   }
 
 
   var connection;
 
-  console.log(req.body);
+
   
   mySQL.createConnection({
   host: mysqlHost,
@@ -102,31 +103,29 @@ router.post('/add', function(req, res){
   }).then(function(conn) {
       connection = conn;
   }).then(function(){
-        if(tableName === 'weights'){
-          connection.query("INSERT INTO weights VALUES " +
-                          "(1,NULL,\x22"+ section +"\x22,\x22weight\x22,\x22" +
-                          workoutDate + "\x22,\x22"+ exercise + "\x22," + weight + "," +
-                          sets + "," + reps + ");"
-                          );
+        if(req.body.type === "weight"){
+          connection.query("INSERT INTO weights VALUES " +"(1,NULL,\x22"+section+"\x22,\x22weight\x22,\x22"+workoutDate+"\x22,\x22"+exercise+"\x22,"+weight+","+sets+","+reps+");"
+            ).then(function(){
+                res.sendStatus(200);
+            }).catch(function(err){
+                console.log(err);
+            });
         }else{
-          connection.query("INSERT INTO " + tableName + " VALUES " +
-                          "(1,NULL,\x22" + section + "\x22,\x22" + tableName + "\x22,\x22" +
-                          workoutDate + "\x22," + distance + "," + time + "," +
-                          intensity + ");"
-                          );
+          connection.query("INSERT INTO "+tableName+" VALUES "+"(1,NULL,\x22"+section+"\x22,\x22"+tableName+"\x22,\x22"+workoutDate+"\x22,"+distance+","+time+","+intensity+");"
+            ).then(function(){
+                res.sendStatus(200);
+            }).catch(function(err){
+                console.log(err);
+            });;
         }
   });
-  res.sendStatus(200);
 });
 
 
 
-//Delete row Post
-//The delete button needs to pass the necessary table and ID to the url.
-//This routing will pull it's parameters from the url
-//I think this will work, but I can't test it due to database connection issues (12/7/16, 3:59am)
+// function takes the AJAX request sent from the client and 
+// makes a query to delete the workout with 
 router.post('/delete', function(req, res) {
-      console.log(req.body);
       var tableName;
       if(req.body.type === 'weight'){
           tableName = 'weights';
@@ -134,7 +133,6 @@ router.post('/delete', function(req, res) {
           tableName = req.body.type;
       }
         
-      console.log(req.body)
       var workoutId = req.body.workoutId;
 
       mySQL.createConnection({
