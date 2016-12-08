@@ -123,12 +123,9 @@ router.post('/add', function(req, res){
 
 
 
-//Delete row Post
-//The delete button needs to pass the necessary table and ID to the url.
-//This routing will pull it's parameters from the url
-//I think this will work, but I can't test it due to database connection issues (12/7/16, 3:59am)
+// function takes the AJAX request sent from the client and 
+// makes a query to delete the workout with 
 router.post('/delete', function(req, res) {
-      console.log(req.body);
       var tableName;
       if(req.body.type === 'weight'){
           tableName = 'weights';
