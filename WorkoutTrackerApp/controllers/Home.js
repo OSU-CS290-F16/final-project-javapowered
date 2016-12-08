@@ -71,8 +71,10 @@ router.post('/add', function(req, res){
     var reps = req.params.reps;   //Reps 
   }else{
     var tableName = req.body.type;  //Table name == type
+    var section = req.body.section; //Section
     var workoutDate = req.body.date; //Date
-    var distance = req.body.distance;   //Weight 
+    var distance = req.body.distance;   //Weight
+    var time = req.body.time;   //Time
     var intensity = req.body.intensity;   //Sets
   }
 
